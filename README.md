@@ -20,9 +20,9 @@ This minimal version focuses on core functionality to demonstrate LLM integratio
 ## Tech Stack
 
 - Python 3.x standard libraries (`ast`, `pathlib`)
-- OpenAI API (GPT-3.5)
+- OpenAI API (gpt-3.5-turbo)
 - Typer for CLI
-- Rich for colored terminal output (optional)
+- Rich for colored terminal output
 
 ### Project Structure
 ```bash
