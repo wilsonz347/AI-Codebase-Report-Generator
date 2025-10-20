@@ -4,8 +4,7 @@ Automated Legacy Codebase Explainer
 
 ## Overview
 
-Silt analyzes legacy or unfamiliar codebases and generates a structured, human-readable report that explains system architecture, dependencies, and intent.  
-Unlike standard documentation tools, it performs deep reasoning to uncover implicit design patterns, dead code, undocumented dependencies, and hypothesized developer rationale.
+Silt analyzes legacy or unfamiliar codebases and generates a structured, human-readable report that explains system architecture, dependencies, and intent.
 
 ## Core Features
 
@@ -72,7 +71,7 @@ Set your OpenAI API key:
 export OPENAI_API_KEY="your_api_key_here"
 ```
 
-Usage
+## Usage
 
 Analyze a repository:
 ```bash
