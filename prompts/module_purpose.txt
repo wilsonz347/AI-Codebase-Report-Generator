@@ -1,13 +1,18 @@
-You are analyzing a code module. Your task is to explain the purpose of this module.
+PURPOSE: Prompt template for explaining what a module/file does
 
-Given the following module information:
-- Module name: {module_name}
-- Functions/classes: {components}
-- Code structure: {structure}
+Content structure:
+- System role definition (senior software engineer analyzing code)
+- Task description (analyze this module and explain its purpose)
+- Required output format:
+  * 2-3 sentence summary
+  * List of key responsibilities
+  * How it fits into larger system
+  * Notable dependencies
+- Constraints (be concise, avoid jargon, focus on intent not implementation)
+- Example input/output pair for few-shot learning
 
-Please provide:
-1. A clear, concise explanation of the module's main purpose
-2. The key responsibilities of this module
-3. How this module fits into the larger application architecture
-
-Keep your explanation accessible to developers who may not be familiar with this codebase.
+Variables to template in:
+- {file_name}
+- {file_content}
+- {imports}
+- {context} (surrounding modules)
