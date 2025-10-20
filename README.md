@@ -13,7 +13,6 @@ Silt analyzes legacy or unfamiliar Python codebases and generates a simple, huma
 - Call OpenAI API to generate concise, natural-language summaries per file
 - Generate a simple markdown report listing all files with AI-generated descriptions
 - Basic CLI interface using Typer
-- Easy to run and understand, perfect for a quick demo project
 
 ## Tech Stack
 
@@ -56,7 +55,7 @@ export OPENAI_API_KEY="your_api_key_here"
 
 Analyze a repository:
 ```bash
-python -m src.main --path /path/to/repo
+python -m src.main --path /path/to/repo # Can only be repositories on your local machine
 ```
 
 Example with a GitHub repo:
