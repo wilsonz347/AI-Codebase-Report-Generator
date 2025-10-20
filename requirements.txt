@@ -1,18 +1,12 @@
-# Core dependencies
-python>=3.8
-
-# Code parsing and analysis
-ast-parser>=0.1.0
-
-# LLM integration (placeholder - update with actual LLM library)
-# openai>=1.0.0
-# anthropic>=0.5.0
-
-# Testing
-pytest>=7.0.0
-pytest-cov>=4.0.0
-
-# Code quality
-black>=23.0.0
-flake8>=6.0.0
-mypy>=1.0.0
+openai>=1.0.0              # OpenAI API client
+tree-sitter>=0.20.0        # Code parsing
+tree-sitter-python         # Python language grammar
+networkx>=3.0              # Dependency graphs
+typer>=0.9.0               # CLI framework
+rich>=13.0.0               # Terminal formatting
+click>=8.0                 # CLI utilities (used by typer)
+python-dotenv>=1.0.0       # Environment variable management
+requests>=2.31.0           # HTTP requests (for GitHub API)
+markdown>=3.5              # Markdown to HTML conversion (optional)
+pytest>=7.4.0              # Testing framework
+pytest-cov>=4.1.0          # Test coverage
