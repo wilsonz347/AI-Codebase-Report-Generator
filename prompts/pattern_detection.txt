@@ -1,14 +1,17 @@
-You are analyzing code patterns and design patterns in a codebase.
+PURPOSE: Prompt template for identifying architectural patterns
 
-Given the following code information:
-- Code structure: {code_structure}
-- Function signatures: {function_signatures}
-- Class relationships: {class_relationships}
+Content structure:
+- System role (software architect reviewing codebase)
+- Task (identify design patterns and explain their purpose)
+- Patterns to look for (MVC, Factory, Singleton, Observer, etc.)
+- Required output format:
+  * Pattern name
+  * Where it's implemented
+  * Why it's likely used here
+  * How well it's implemented
+- Constraints (only identify patterns you're confident about)
 
-Please identify and explain:
-1. Design patterns used (e.g., Singleton, Factory, Observer, etc.)
-2. Code organization patterns (e.g., MVC, layered architecture, etc.)
-3. Common coding conventions or idioms
-4. Any anti-patterns that should be addressed
-
-Provide clear examples from the code to support your analysis.
+Variables to template in:
+- {code_snippet}
+- {class_definitions}
+- {module_structure}
