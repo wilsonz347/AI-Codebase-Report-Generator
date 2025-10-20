@@ -40,10 +40,6 @@ def analyze_codebase(path, config):
     # parser_results = parser.parse(path)
     parser_results = "parsed_data"
 
-    # Placeholder: analyze parsed data
-    # analysis_results = analyzer.analyze(parser_results)
-    analysis_results = "analysis_data"
-
     # Placeholder: obtain LLM explanations
     # explanations = llm_explainer.explain(analysis_results, config)
     explanations = "explanations"
