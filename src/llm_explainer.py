@@ -1,44 +1,40 @@
 """
-LLM Explainer module for Silt project.
+LLM API INTEGRATION & PROMPT ENGINEERING
 
-This module uses LLM to explain code analysis results.
+Purpose: Interface with OpenAI API to generate natural language explanations.
+
+What this file should contain:
+- OpenAI API client initialization and configuration
+- Prompt templates for different analysis types
+- Response caching mechanism (avoid re-analyzing same code)
+- Token counting and cost estimation
+- Rate limiting and retry logic with exponential backoff
+- Batch processing of similar requests
+- Context window management (chunking large files)
+- Different explanation strategies:
+  * Module/file purpose explanation
+  * Function intent inference
+  * Pattern explanation (why this pattern was chosen)
+  * Design decision reasoning
+  * Mystery code explanation
+- Response parsing and validation
+- Error handling for API failures
+- Cost tracking and logging
+
+Key classes/functions:
+- LLMExplainer class with OpenAI client
+- explain_module_purpose(file_content, context) -> str
+- explain_pattern(pattern_type, code_snippet) -> str
+- explain_mystery(code_snippet, context) -> str
+- infer_design_reasoning(code_snippet) -> str
+- _build_prompt(template, code, context) -> str
+- _call_api_with_retry(prompt, model) -> str
+- cache_response(key, response)
+- estimate_cost(token_count) -> float
+
+Prompt templates to include:
+- MODULE_PURPOSE_PROMPT
+- PATTERN_DETECTION_PROMPT
+- MYSTERY_EXPLANATION_PROMPT
+- DESIGN_REASONING_PROMPT
 """
-
-
-def explain_module_purpose(module_data):
-    """
-    Use LLM to explain the purpose of a module.
-    
-    Args:
-        module_data: Module data to explain
-        
-    Returns:
-        Explanation of module purpose
-    """
-    pass
-
-
-def explain_code_patterns(pattern_data):
-    """
-    Use LLM to explain detected code patterns.
-    
-    Args:
-        pattern_data: Pattern data to explain
-        
-    Returns:
-        Explanation of patterns
-    """
-    pass
-
-
-def solve_code_mystery(mystery_data):
-    """
-    Use LLM to help solve code mysteries.
-    
-    Args:
-        mystery_data: Code mystery to solve
-        
-    Returns:
-        Solution or explanation
-    """
-    pass
