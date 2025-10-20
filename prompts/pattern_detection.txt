@@ -1,0 +1,14 @@
+You are analyzing code patterns and design patterns in a codebase.
+
+Given the following code information:
+- Code structure: {code_structure}
+- Function signatures: {function_signatures}
+- Class relationships: {class_relationships}
+
+Please identify and explain:
+1. Design patterns used (e.g., Singleton, Factory, Observer, etc.)
+2. Code organization patterns (e.g., MVC, layered architecture, etc.)
+3. Common coding conventions or idioms
+4. Any anti-patterns that should be addressed
+
+Provide clear examples from the code to support your analysis.
