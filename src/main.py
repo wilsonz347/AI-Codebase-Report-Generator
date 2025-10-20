@@ -1,49 +1,21 @@
 """
-Main entry point for Silt project.
+MAIN ENTRY POINT & CLI INTERFACE
 
-This module orchestrates the parsing, analysis, explanation, and reporting.
+Purpose: Command-line interface and orchestration layer for Silt.
+
+What this file should contain:
+- Typer/Click CLI setup with commands (analyze, configure, etc.)
+- Argument parsing (--path, --repo, --output, --model selection)
+- Input validation (check if path exists, GitHub URL format)
+- Orchestration: call parser → analyzer → llm_explainer → report_generator
+- Error handling and user-friendly error messages
+- Rich console output for progress tracking (progress bars, status updates)
+- Configuration loading (API keys, default settings)
+- Main execution flow control
+
+Key functions:
+- main() or app = typer.Typer()
+- analyze_command(path, output_dir, model_name)
+- validate_inputs()
+- setup_logging()
 """
-
-import argparse
-from parser import parse_file, parse_directory
-from analyzer import analyze_code_structure, detect_patterns
-from llm_explainer import explain_module_purpose, explain_code_patterns
-from report_generator import generate_markdown_report, save_report
-
-
-def main():
-    """
-    Main function to run the Silt application.
-    """
-    parser = argparse.ArgumentParser(description='Silt - Code Analysis and Explanation Tool')
-    parser.add_argument('path', help='Path to file or directory to analyze')
-    parser.add_argument('-o', '--output', default='report.md', help='Output report path')
-    
-    args = parser.parse_args()
-    
-    # Parse
-    print(f"Parsing {args.path}...")
-    parsed_data = parse_file(args.path)
-    
-    # Analyze
-    print("Analyzing code structure...")
-    analysis = analyze_code_structure(parsed_data)
-    patterns = detect_patterns(parsed_data)
-    
-    # Explain
-    print("Generating explanations...")
-    explanations = {
-        'purpose': explain_module_purpose(parsed_data),
-        'patterns': explain_code_patterns(patterns)
-    }
-    
-    # Report
-    print("Generating report...")
-    report = generate_markdown_report(analysis, explanations)
-    save_report(report, args.output)
-    
-    print(f"Report saved to {args.output}")
-
-
-if __name__ == '__main__':
-    main()
