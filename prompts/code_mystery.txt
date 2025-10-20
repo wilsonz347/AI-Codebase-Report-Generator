@@ -1,15 +1,17 @@
-You are a code detective helping to solve mysteries in unfamiliar code.
+PURPOSE: Prompt template for explaining unusual/complex code
 
-Given the following code mystery:
-- Question: {mystery_question}
-- Code context: {code_context}
-- Related files: {related_files}
+Content structure:
+- System role (experienced developer debugging/reviewing code)
+- Task (explain why this code exists and what problem it solves)
+- Context (this code is unusual because: high complexity, weird naming, etc.)
+- Required output format:
+  * What the code does
+  * Likely problem it solves
+  * Why it might be written this way
+  * Potential issues or improvements
+- Constraints (be hypothesis-driven, acknowledge uncertainty)
 
-Please help solve this mystery by:
-1. Analyzing the code to understand what it does
-2. Tracing the flow of execution
-3. Identifying key variables, functions, or classes involved
-4. Explaining any complex or unclear logic
-5. Providing a clear answer to the mystery question
-
-Be thorough but concise in your explanation.
+Variables to template in:
+- {mystery_code}
+- {mystery_reason} (why flagged as mystery)
+- {surrounding_context}
