@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from rich.console import Console
+from parser import walk_and_parse
 
 # Load environment variables from root .env
 load_dotenv()
@@ -36,9 +37,8 @@ def analyze_codebase(path, config):
     """Call parser, analyzer, LLM explainer, and report generator in sequence."""
     console.print(f"[blue]Starting analysis for {path} with model {config['model']}[/blue]")
     
-    # Placeholder: parse codebase
-    # parser_results = parser.parse(path)
-    parser_results = "parsed_data"
+    # Parse the files
+    parser_results = walk_and_parse(path)
 
     # Placeholder: obtain LLM explanations
     # explanations = llm_explainer.explain(analysis_results, config)
