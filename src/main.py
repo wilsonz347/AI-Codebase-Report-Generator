@@ -1,21 +1,72 @@
 """
-MAIN ENTRY POINT & CLI INTERFACE
-
-Purpose: Command-line interface and orchestration layer for Silt.
-
-What this file should contain:
-- Typer/Click CLI setup with commands (analyze, configure, etc.)
-- Argument parsing (--path, --repo, --output, --model selection)
-- Input validation (check if path exists, GitHub URL format)
-- Orchestration: call parser → analyzer → llm_explainer → report_generator
-- Error handling and user-friendly error messages
-- Rich console output for progress tracking (progress bars, status updates)
-- Configuration loading (API keys, default settings)
-- Main execution flow control
-
-Key functions:
-- main() or app = typer.Typer()
-- analyze_command(path, output_dir, model_name)
-- validate_inputs()
-- setup_logging()
+MAIN ENTRY POINT & CLI INTERFACE.
 """
+
+import typer
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+from rich.console import Console
+
+# Load environment variables from root .env
+load_dotenv()
+
+# Initialize Typer & Rich
+console = Console()
+app = typer.Typer()
+
+def validate_path(path):
+    """Validate if the given path exists or if URL is valid."""
+    if os.path.exists(path):
+        return Path(path)
+    elif path.startswith("http://") or path.startswith("https://"):
+        return path
+    else:
+        raise ValueError(f"Invalid path or URL: {path}")
+    
+def load_config():
+    """Load the configurations (API Keys, default settings)"""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        console.print("[red]Error: OPENAI_API_KEY is not set in environment[/red]")
+        raise typer.Exit()
+    return {"api_key": api_key, "model": os.getenv("MODEL", "gpt-3.5-turbo")}
+
+def analyze_codebase(path, config):
+    """Call parser, analyzer, LLM explainer, and report generator in sequence."""
+    console.print(f"[blue]Starting analysis for {path} with model {config['model']}[/blue]")
+    
+    # Placeholder: parse codebase
+    # parser_results = parser.parse(path)
+    parser_results = "parsed_data"
+
+    # Placeholder: analyze parsed data
+    # analysis_results = analyzer.analyze(parser_results)
+    analysis_results = "analysis_data"
+
+    # Placeholder: obtain LLM explanations
+    # explanations = llm_explainer.explain(analysis_results, config)
+    explanations = "explanations"
+
+    # Placeholder: generate report
+    # report_generator.generate(explanations, output_dir)
+    console.print(f"[green]Report generated successfully.[/green]")
+
+@app.command()
+def analyze(
+    path: str = typer.Argument(..., help="Path to the codebase or GitHub repo URL"),
+    output: str = typer.Option("reports/", help="Output directory for the report"),
+    model: str = typer.Option("gpt-3.5-turbo", help="LLM model to use (GPT-4, GPT-3.5, etc.)")
+):
+    """Analyze a codebase and generate a structured report."""
+    try:
+        validated_path = validate_path(path)
+        config = load_config()
+        analyze_codebase(validated_path, config)
+        console.print(f"[green]Reports saved to {output}[/green]")
+    except Exception as e:
+        console.print(f"[red]Error: {e}[/red]")
+        raise typer.Exit(code=1)
+
+if __name__ == "__main__":
+    app()

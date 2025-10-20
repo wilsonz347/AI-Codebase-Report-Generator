@@ -4,55 +4,38 @@ Automated Legacy Codebase Explainer
 
 ## Overview
 
-Silt analyzes legacy or unfamiliar codebases and generates a structured, human-readable report that explains system architecture, dependencies, and intent.
+Silt analyzes legacy or unfamiliar Python codebases and generates a simple, human-readable markdown report. It leverages the OpenAI API to produce natural-language summaries of code files based on extracted imports and function names.
 
-## Core Features
+This minimal version focuses on core functionality to demonstrate LLM integration while keeping the codebase lightweight and easy to extend.
 
-### Codebase Ingestion and Analysis
-- Parse a local or remote (GitHub) repository
-- Extract directory structure, imports, functions, and classes
-- Build dependency graphs between modules
+## Features
 
-### LLM-Driven Insights
-- **Module Purpose Inference**: Generate natural-language summaries for files and components  
-- **Architectural Pattern Detection**: Identify patterns such as MVC, Factory, or Singleton  
-- **Dead Code Detection**: Flag unused functions and classes  
-- **Implicit Documentation**: Explain under-documented sections  
-- **Design Reasoning**: Provide hypotheses on why certain code exists or is structured a certain way
+- Recursively parse a local Python project directory
+- Extract imports and function names from each `.py` file
+- Call OpenAI API to generate concise, natural-language summaries per file
+- Generate a simple markdown report listing all files with AI-generated descriptions
+- Basic CLI interface using Typer
+- Easy to run and understand, perfect for a quick demo project
 
-### Interactive Report Generation
-- Executive summary of the codebase  
-- Hierarchical breakdown of modules  
-- Mermaid-based dependency visualization  
-- Section for anomalies and potential refactor candidates  
-- Suggested starting points for new developers
+## Tech Stack
 
-## Technical Overview
-
-### Tech Stack
-- Python 3.x  
-- Tree-sitter for multi-language parsing  
-- NetworkX for dependency graph construction  
-- OpenAI API (GPT-4 or GPT-3.5-turbo) for LLM inference  
-- Rich and Typer for the command-line interface  
-- Markdown output with Mermaid diagrams
+- Python 3.x standard libraries (`ast`, `pathlib`)
+- OpenAI API (GPT-3.5)
+- Typer for CLI
+- Rich for colored terminal output (optional)
 
 ### Project Structure
 ```bash
 Silt/
 ├── src/
 │ ├── parser.py
-│ ├── analyzer.py
 │ ├── llm_explainer.py
 │ ├── report_generator.py
 │ └── main.py
 ├── prompts/
-│ ├── module_purpose.txt
-│ ├── pattern_detection.txt
-│ └── code_mystery.txt
+│ └── module_purpose.txt
 ├── examples/
 │ └── sample_output.md
-├── tests/
 ├── requirements.txt
 └── README.md
 ```
@@ -87,12 +70,10 @@ Reports are generated in the reports/ directory by default.
 
 ## Example Output
 Sample Markdown report includes:
-- Executive summary
-- File-level purpose explanations
-- Dependency diagram in Mermaid syntax
-- List of potential issues or "mysteries"
+- File list with imports and functions
+- AI-generated summaries describing what each file likely does
 
-See examples/sample_output.md for a sample output.
+See `examples/sample_output.md` for a sample report.
 
 ## License
-MIT License
+This project is licensed under the [MIT License](./LICENSE).

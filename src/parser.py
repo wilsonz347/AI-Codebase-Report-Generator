@@ -1,24 +1,29 @@
 """
 CODE PARSING & AST EXTRACTION
-
-Purpose: Extract structural information from codebases across multiple languages.
-
-What this file should contain:
-- Tree-sitter integration for parsing Python (start with Python only for MVP)
-- File system traversal (walk directory tree, filter by extensions)
-- AST (Abstract Syntax Tree) extraction utilities
-- Extract imports/dependencies from files
-- Extract function signatures, class definitions, docstrings
-- Extract decorators, type hints, and annotations
-- File metadata collection (LOC, complexity metrics)
-- Language detection logic (if supporting multiple languages)
-- Gitignore/exclusion pattern handling (skip venv, node_modules, etc.)
-
-Key classes/functions:
-- CodebaseParser class
-- parse_file(filepath) -> FileAST
-- extract_functions(ast_node) -> List[Function]
-- extract_classes(ast_node) -> List[Class]
-- extract_imports(ast_node) -> List[Import]
-- get_file_tree(root_path) -> DirectoryTree
+Extract structural information from codebases across multiple languages.
 """
+
+import ast
+from pathlib import Path
+
+def parse_python_file(filepath):
+    try:
+        source = filepath.read_text()
+        tree = ast.parse(source)
+    except Exception:
+        return None
+    imports = [node.names[0].name for node in ast.walk(tree) if isinstance(node, ast.Import)]
+    functions = [node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
+    return {"path": str(filepath), "imports": imports, "functions": functions}
+
+def walk_and_parse(root_path):
+    root = Path(root_path)
+    exclude_dirs = {'.venv', '__pycache__', '.git'}
+    parsed_files = []
+    for file in root.rglob("*.py"):
+        if any(part in exclude_dirs for part in file.parts):
+            continue
+        parsed = simple_parse_python_file(file)
+        if parsed:
+            parsed_files.append(parsed)
+    return parsed_files
