@@ -1,40 +1,37 @@
-"""
-LLM API INTEGRATION & PROMPT ENGINEERING
+import os
+from openai import OpenAI
 
-Purpose: Interface with OpenAI API to generate natural language explanations.
+class LLMExplainer:
+    """LLM explainer for generating file/module summaries using OpenAI API."""
 
-What this file should contain:
-- OpenAI API client initialization and configuration
-- Prompt templates for different analysis types
-- Response caching mechanism (avoid re-analyzing same code)
-- Token counting and cost estimation
-- Rate limiting and retry logic with exponential backoff
-- Batch processing of similar requests
-- Context window management (chunking large files)
-- Different explanation strategies:
-  * Module/file purpose explanation
-  * Function intent inference
-  * Pattern explanation (why this pattern was chosen)
-  * Design decision reasoning
-  * Mystery code explanation
-- Response parsing and validation
-- Error handling for API failures
-- Cost tracking and logging
+    def __init__(self, api_key=None, model="gpt-3.5-turbo", prompt_path="../prompts/module_purpose.txt"):
+      # Initialize OpenAI client & model
+      self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+      self.model = model
+      self.client = OpenAI(api_key=self.api_key)
+      with open(prompt_path, "r") as f:
+          self.prompt_template = f.read()
 
-Key classes/functions:
-- LLMExplainer class with OpenAI client
-- explain_module_purpose(file_content, context) -> str
-- explain_pattern(pattern_type, code_snippet) -> str
-- explain_mystery(code_snippet, context) -> str
-- infer_design_reasoning(code_snippet) -> str
-- _build_prompt(template, code, context) -> str
-- _call_api_with_retry(prompt, model) -> str
-- cache_response(key, response)
-- estimate_cost(token_count) -> float
+    def explain_module_purpose(self, file_info):
+      """
+      Generate a summary for a Python file given its imports and functions.
+      
+      Returns: LLM-generated summary of the file's purpose.
+      """
+      
+      # Insert the format of the prompt
+      prompt = self.prompt_template.format(
+          filename=file_info['path'],
+          imports=", ".join(file_info['imports']),
+          functions=", ".join(file_info['functions'])
+      )
 
-Prompt templates to include:
-- MODULE_PURPOSE_PROMPT
-- PATTERN_DETECTION_PROMPT
-- MYSTERY_EXPLANATION_PROMPT
-- DESIGN_REASONING_PROMPT
-"""
+      # Sends the prompt to GPT model 3.5-turbo
+      response = self.client.chat.completions.create(
+          model=self.model,
+          messages=[
+              {"role": "system", "content": "You are an expert codebase manager. Given only file names, imports, and function names, you infer and summarize the likely purpose of each file as clearly as possible."},
+              {"role": "user", "content": prompt}
+          ]
+      )
+      return response.choices[0].message.content.strip()
