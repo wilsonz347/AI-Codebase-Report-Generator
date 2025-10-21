@@ -58,11 +58,7 @@ def analyze_codebase(path, config):
     console.print(f"[green]Report generated successfully: {rpath}[/green]")
 
 @app.command()
-def analyze(
-    path: str = typer.Argument(..., help="Path to the codebase or GitHub repo URL"),
-    output: str = typer.Option("reports/", help="Output directory for the report"),
-    model: str = typer.Option("gpt-3.5-turbo", help="LLM model to use (GPT-4, GPT-3.5, etc.)")
-):
+def analyze(path: str = typer.Argument(..., help="Path to the codebase or GitHub repo URL")):
     """Analyze a codebase and generate a structured report."""
     try:
         validated_path = validate_path(path)
