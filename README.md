@@ -1,10 +1,8 @@
-# Silt
-
-Automated Legacy Codebase Explainer
+# AI Codebase Report Generator
 
 ## Overview
 
-Silt analyzes legacy or unfamiliar Python codebases and generates a simple, human-readable markdown report. It leverages the OpenAI API to produce natural-language summaries of code files based on extracted imports and function names.
+AI Codebase Report Generator analyzes legacy or unfamiliar Python codebases and generates a simple, human-readable markdown report. It leverages the OpenAI API to produce natural-language summaries of code files based on extracted imports and function names.
 
 ## Features
 
