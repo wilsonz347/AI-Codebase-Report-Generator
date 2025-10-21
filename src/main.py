@@ -8,6 +8,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from rich.console import Console
 from parser import walk_and_parse
+from llm_explainer import LLMExplainer
 
 # Load environment variables from root .env
 load_dotenv()
@@ -39,6 +40,17 @@ def analyze_codebase(path, config):
     
     # Parse the files
     parser_results = walk_and_parse(path)
+    
+    # Initialize OpenAI Client & Model
+    explainer = LLMExplainer(api_key=config["api_key"], model=config["model"])
+    
+    # Get a summary of each file
+    summaries = []
+    for file in parser_results:
+        summaries.append({
+            'File': file,
+            'Summary': explainer.explain_module_purpose(file)
+        })
 
     # Placeholder: obtain LLM explanations
     # explanations = llm_explainer.explain(analysis_results, config)
