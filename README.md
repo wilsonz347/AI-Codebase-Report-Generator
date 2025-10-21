@@ -70,7 +70,5 @@ Sample Markdown report includes:
 - File list with imports and functions
 - AI-generated summaries describing what each file likely does
 
-See `examples/sample_output.md` for a sample report.
-
 ## License
 This project is licensed under the [MIT License](./LICENSE).
