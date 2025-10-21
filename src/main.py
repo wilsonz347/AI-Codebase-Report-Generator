@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from rich.console import Console
 from parser import walk_and_parse
 from llm_explainer import LLMExplainer
+from report_generator import generate_report
 
 # Load environment variables from root .env
 load_dotenv()
@@ -52,13 +53,9 @@ def analyze_codebase(path, config):
             'Summary': explainer.explain_module_purpose(file)
         })
 
-    # Placeholder: obtain LLM explanations
-    # explanations = llm_explainer.explain(analysis_results, config)
-    explanations = "explanations"
-
-    # Placeholder: generate report
-    # report_generator.generate(explanations, output_dir)
-    console.print(f"[green]Report generated successfully.[/green]")
+    # Generate & structure report in markdown
+    rpath = generate_report(summaries)
+    console.print(f"[green]Report generated successfully: {rpath}[/green]")
 
 @app.command()
 def analyze(
@@ -71,7 +68,6 @@ def analyze(
         validated_path = validate_path(path)
         config = load_config()
         analyze_codebase(validated_path, config)
-        console.print(f"[green]Reports saved to {output}[/green]")
     except Exception as e:
         console.print(f"[red]Error: {e}[/red]")
         raise typer.Exit(code=1)
