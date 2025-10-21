@@ -43,8 +43,8 @@ Silt/
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/code-archaeology.git
-cd code-archaeology
+git clone https://github.com/yourusername/ai-codebase-report-generator.git
+cd ai-codebase-report-generator
 pip install -r requirements.txt
 ```
 
