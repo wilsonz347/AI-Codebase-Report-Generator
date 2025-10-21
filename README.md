@@ -33,8 +33,6 @@ Silt/
 │ └── main.py
 ├── prompts/
 │ └── module_purpose.txt
-├── examples/
-│ └── sample_output.md
 ├── requirements.txt
 └── README.md
 ```
