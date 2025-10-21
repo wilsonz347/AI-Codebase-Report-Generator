@@ -46,21 +46,17 @@ cd code-archaeology
 pip install -r requirements.txt
 ```
 
-Set your OpenAI API key:
+Set your OpenAI API key and model in a .env file:
 ```bash
-export OPENAI_API_KEY="your_api_key_here"
+OPENAI_API_KEY=your_api_key_here
+MODEL=gpt-3.5-turbo
 ```
 
 ## Usage
 
-Analyze a repository:
+Analyze a local repository:
 ```bash
-python -m src.main --path /path/to/repo # Can only be repositories on your local machine
-```
-
-Example with a GitHub repo:
-```bash
-python -m src.main --repo https://github.com/pallets/flask
+python -m src.main --path /path/to/repo
 ```
 
 Reports are generated in the reports/ directory by default.
