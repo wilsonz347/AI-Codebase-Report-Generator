@@ -1,5 +1,9 @@
 # AI Codebase Report Generator
 
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![OpenAI API](https://img.shields.io/badge/OpenAI-API-blue)
+
 ## Overview
 
 AI Codebase Report Generator analyzes legacy or unfamiliar Python codebases and generates a simple, human-readable markdown report. It leverages the OpenAI API to produce natural-language summaries of code files based on extracted imports and function names.
