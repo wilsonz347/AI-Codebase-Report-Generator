@@ -56,7 +56,12 @@ MODEL=gpt-3.5-turbo
 
 Analyze a local repository:
 ```bash
-python -m src.main --path /path/to/repo
+# From the project root
+python -m src.main /path/to/repo
+```
+```bash
+# From inside the src directory
+python main.py /path/to/repo
 ```
 
 Reports are generated in the reports/ directory by default.
