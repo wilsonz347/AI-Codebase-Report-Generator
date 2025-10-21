@@ -1,18 +1,9 @@
-PURPOSE: Prompt template for explaining what a module/file does
+File name: {filename}
 
-Content structure:
-- System role definition (senior software engineer analyzing code)
-- Task description (analyze this module and explain its purpose)
-- Required output format:
-  * 2-3 sentence summary
-  * List of key responsibilities
-  * How it fits into larger system
-  * Notable dependencies
-- Constraints (be concise, avoid jargon, focus on intent not implementation)
-- Example input/output pair for few-shot learning
+Imports:
+{imports}
 
-Variables to template in:
-- {file_name}
-- {file_content}
-- {imports}
-- {context} (surrounding modules)
+Functions:
+{functions}
+
+Write a 2-3 sentence summary describing what this file is likely responsible for within a larger project. If the purpose is unclear, state what can be inferred from the available information.
