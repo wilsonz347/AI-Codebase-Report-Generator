@@ -6,8 +6,6 @@ Automated Legacy Codebase Explainer
 
 Silt analyzes legacy or unfamiliar Python codebases and generates a simple, human-readable markdown report. It leverages the OpenAI API to produce natural-language summaries of code files based on extracted imports and function names.
 
-This minimal version focuses on core functionality to demonstrate LLM integration while keeping the codebase lightweight and easy to extend.
-
 ## Features
 
 - Recursively parse a local Python project directory
@@ -15,7 +13,6 @@ This minimal version focuses on core functionality to demonstrate LLM integratio
 - Call OpenAI API to generate concise, natural-language summaries per file
 - Generate a simple markdown report listing all files with AI-generated descriptions
 - Basic CLI interface using Typer
-- Easy to run and understand, perfect for a quick demo project
 
 ## Tech Stack
 
@@ -58,7 +55,7 @@ export OPENAI_API_KEY="your_api_key_here"
 
 Analyze a repository:
 ```bash
-python -m src.main --path /path/to/repo
+python -m src.main --path /path/to/repo # Can only be repositories on your local machine
 ```
 
 Example with a GitHub repo:
