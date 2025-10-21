@@ -25,7 +25,7 @@ AI Codebase Report Generator analyzes legacy or unfamiliar Python codebases and 
 
 ### Project Structure
 ```bash
-Silt/
+ai-codebase-report-generator/
 ├── src/
 │ ├── parser.py
 │ ├── llm_explainer.py
