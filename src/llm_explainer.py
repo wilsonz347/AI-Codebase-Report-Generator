@@ -32,6 +32,7 @@ class LLMExplainer:
           messages=[
               {"role": "system", "content": "You are an expert codebase manager. Given only file names, imports, and function names, you infer and summarize the likely purpose of each file as clearly as possible."},
               {"role": "user", "content": prompt}
-          ]
+          ],
+          max_tokens=500
       )
       return response.choices[0].message.content.strip()
